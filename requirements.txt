@@ -1,6 +1,6 @@
-transformers>=4.44.0
+# Needs transformers >= 4.53 for DiffusionGemmaForBlockDiffusion
+transformers>=4.53.0
 accelerate>=0.33.0
-bitsandbytes>=0.43.0
 torch>=2.3.0
 ipywidgets>=8.0.0
 jupyter>=1.0.0
