@@ -1,35 +1,31 @@
-# DiffusionGemma — NVIDIA Free API
+# DiffusionGemma
 
-Run `google/diffusiongemma-26b-a4b-it` for free via [NVIDIA build.nvidia.com](https://build.nvidia.com) — no GPU required.
+Run `google/diffusiongemma-26B-A4B-it` for free on Google Colab (T4 GPU).
 
-## Quickstart in GitHub Codespace
+## Quickstart — Google Colab
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/e1daru/DiffusionGemma/blob/main/notebooks/diffusiongemma_colab.ipynb)
+
+1. Click the badge above
+2. Go to **Runtime → Change runtime type → T4 GPU**
+3. Run all cells (Ctrl+F9)
+
+The first cell checks your GPU, the second installs dependencies (~2 min), then the model loads from HuggingFace in 4-bit quantization to fit in 15 GB VRAM.
+
+## What's in the notebook
+
+| Cell | What it does |
+|---|---|
+| GPU check | Confirms you have a T4 |
+| Install | `transformers`, `bitsandbytes`, `accelerate` |
+| Load model | 4-bit NF4 quantized, auto device map |
+| Basic generation | Single prompt → response |
+| Multi-turn chat | Conversation with history |
+| Interactive widget | Sliders for temperature / max tokens |
+| Batch comparison | Same prompt at 4 different temperatures |
+
+## Run in GitHub Codespace (no GPU — CPU only)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/e1daru/DiffusionGemma)
 
-1. Click the badge above (or open the repo in Codespace from the GitHub UI)
-2. Wait ~2 min for the container to build and `pip install` to finish
-3. Get a free API key at **[build.nvidia.com](https://build.nvidia.com)** → sign in → top-right avatar → "API Key"
-4. In the Codespace terminal:
-   ```bash
-   cp .env.example .env
-   # then edit .env and paste your key
-   ```
-5. Try the CLI:
-   ```bash
-   python scripts/inference.py --prompt "What is a diffusion language model?"
-   ```
-6. Or open `notebooks/diffusiongemma_nvidia.ipynb` in VS Code and run cells interactively
-
-## CLI options
-
-```
-python scripts/inference.py \
-  --prompt "Your prompt here" \
-  --max-tokens 512 \
-  --temperature 0.7 \
-  --stream
-```
-
-## Free tier limits
-
-NVIDIA's free tier gives you 1000 API credits per month. DiffusionGemma-26B uses roughly 1 credit per ~100 output tokens. More than enough for experimentation.
+CPU-only inference is very slow for a 26B model — only use this if you want to edit and test the code, not run real inference. Use Colab for actual generation.
