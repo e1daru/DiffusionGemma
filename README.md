@@ -6,11 +6,13 @@ Run `google/diffusiongemma-26B-A4B-it` using the correct `DiffusionGemmaForBlock
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/e1daru/DiffusionGemma)
 
-The devcontainer requests a **16-core / 64 GB RAM** machine. The model loads in float16 on CPU (~52 GB), so you need this size or larger.
+The devcontainer requests a **16-core / 64 GB RAM** machine. The notebook uses `bfloat16` on CPU to avoid loading float32 weights, so you need this size or larger.
 
 1. Click the badge → GitHub will use the devcontainer config to provision the right machine size
 2. Wait ~3 min for container build + `pip install`
-3. Open `notebooks/diffusiongemma_colab.ipynb` in VS Code and run cells
+3. Open `notebooks/diffusiongemma_colab.ipynb` in VS Code
+4. Click **Select Kernel** and choose **Python 3**
+5. Run the cells
 
 CPU inference is slower than GPU (~5–15 tok/s) but works fine for experimentation.
 
@@ -29,7 +31,7 @@ from transformers import DiffusionGemmaForBlockDiffusion, AutoProcessor
 
 model = DiffusionGemmaForBlockDiffusion.from_pretrained(
     "google/diffusiongemma-26B-A4B-it",
-    torch_dtype="auto",
+    dtype="auto",
     device_map="auto",
 )
 processor = AutoProcessor.from_pretrained("google/diffusiongemma-26B-A4B-it")
