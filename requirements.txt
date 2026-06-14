@@ -2,6 +2,7 @@
 transformers>=4.53.0
 accelerate>=0.33.0
 torch>=2.3.0
+torchvision>=0.18.0
 ipywidgets>=8.0.0
 jupyter>=1.0.0
 pillow>=10.0.0
